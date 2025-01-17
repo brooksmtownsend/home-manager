@@ -15,9 +15,10 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  home.sessionPath = [
-    "$HOME/.cargo/bin"
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "vault"
+    ];
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -40,9 +41,9 @@
     # '')
     pkgs.act
     pkgs.bat
-    pkgs.cargo
     pkgs.cargo-binstall
     pkgs.cargo-nextest
+    pkgs.eksctl
     pkgs.eza
     pkgs.fd
     pkgs.gh
@@ -50,11 +51,18 @@
     pkgs.htop
     pkgs.jq
     pkgs.k6
+    pkgs.kind
+    pkgs.kubernetes-helm
     pkgs.nats-server
     pkgs.natscli
+    pkgs.nodejs_23
     pkgs.redis
+    pkgs.ripgrep
+    pkgs.rustup
     pkgs.thefuck
     pkgs.tinygo
+    pkgs.vault
+    pkgs.zig
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -113,6 +121,8 @@
 
     initExtra = ''
       export PATH="$PATH:$HOME/.cargo/bin"
+      export PATH="$PATH:$HOME/go/bin"
+      export AWS_PROFILE="enterprise-dev"
       bindkey "\e[1;3D" backward-word
       bindkey "\e[1;3C" forward-word
     '';
@@ -349,6 +359,7 @@
         command = "wash -V | grep wash | awk '{print $1, $2}'";
         format = "[$symbol $output]($style) ";
         style = "bold fg:#00C389";
+        ignore_timeout = true; 
       };
     };
   };
