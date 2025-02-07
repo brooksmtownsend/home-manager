@@ -55,7 +55,8 @@
     pkgs.kubernetes-helm
     pkgs.nats-server
     pkgs.natscli
-    pkgs.nodejs_23
+    pkgs.nodejs_22
+    pkgs.protobuf
     pkgs.redis
     pkgs.ripgrep
     pkgs.rustup
@@ -125,6 +126,7 @@
       export AWS_PROFILE="enterprise-dev"
       bindkey "\e[1;3D" backward-word
       bindkey "\e[1;3C" forward-word
+      eval $(thefuck --alias)
     '';
 
     shellAliases = {
