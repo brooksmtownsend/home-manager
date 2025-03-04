@@ -43,6 +43,8 @@
     pkgs.bat
     pkgs.cargo-binstall
     pkgs.cargo-nextest
+    pkgs.cargo-tauri
+    pkgs.cmakeMinimal
     pkgs.eksctl
     pkgs.eza
     pkgs.fd
@@ -63,6 +65,7 @@
     pkgs.thefuck
     pkgs.tinygo
     pkgs.vault
+    pkgs.wasm-tools
     pkgs.zig
   ];
 
@@ -144,7 +147,7 @@
       p = "ps aux";
       c = "connect";
       t = "tmux -f ~/.config/tmux/tmux.conf";
-      owash = "WASMCLOUD_CTL_HOST=100.117.106.124 WASMCLOUD_RPC_HOST=100.117.106.124 WASMCLOUD_LATTICE=brooks wash";
+      owash = "WASMCLOUD_CTL_HOST=100.66.146.112 WASMCLOUD_RPC_HOST=100.66.146.112 WASMCLOUD_CTL_TIMEOUT_MS=100 wash";
     };
 
     # plugins = [
